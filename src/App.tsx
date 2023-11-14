@@ -20,6 +20,7 @@ const App = () => {
         {/* private routes */}
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
+          <Route path="/explore" element={<Home />} />
         </Route>
       </Routes>
       <Toaster />
