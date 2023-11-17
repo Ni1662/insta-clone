@@ -1,8 +1,7 @@
-import React from 'react'
 
 const LikedPosts = () => {
   return (
-    <div>LikedPosts</div>
+    <div className=''>LikedPosts</div>
   )
 }
 
