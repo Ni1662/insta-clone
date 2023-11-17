@@ -2,8 +2,15 @@ import GridPostList from "@/components/shared/GridPostList";
 import Loader from "@/components/shared/Loader";
 import { Button } from "@/components/ui/button";
 import { useUserContext } from "@/context/AuthContext";
-import { useGetCurrentUserById } from "@/lib/react-query/queriesAndMutations";
-import { Link, Outlet, Route, Routes, useLocation, useParams } from "react-router-dom";
+import { useGetUserById } from "@/lib/react-query/queriesAndMutations";
+import {
+  Link,
+  Outlet,
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import { LikedPosts } from ".";
 
 interface StabBlockProps {
@@ -23,7 +30,7 @@ const Profile = () => {
   const { user } = useUserContext();
   const { pathname } = useLocation();
 
-  const { data: currentUser } = useGetCurrentUserById(id || "");
+  const { data: currentUser } = useGetUserById(id || "");
 
   if (!currentUser)
     return (
@@ -58,7 +65,7 @@ const Profile = () => {
               <StatBlock value="0" label="Following" />
             </div>
             <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
-              {currentUser.bio || "AMu"}
+              {currentUser.bio}
             </p>
           </div>
           <div className="flex justify-center gap-4">
@@ -120,7 +127,7 @@ const Profile = () => {
           </Link>
         </div>
       )}
-       <Routes>
+      <Routes>
         <Route
           index
           element={<GridPostList posts={currentUser.posts} showUser={false} />}
